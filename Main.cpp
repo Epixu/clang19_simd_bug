@@ -5,6 +5,8 @@
 #include <simde/x86/sse2.h>
 #include <simde/x86/sse.h>
 #include <simde/x86/svml.h>
+#include "Bitmask.hpp"
+
 
 int main() {
    {
@@ -17,6 +19,16 @@ int main() {
       auto mov = simde_mm_movemask_epi8(simde_mm_packs_epi16(res, simde_mm_setzero_si128()));
       if (mov != 224)
          return -1;
+
+      Bitmask<5> mask;
+      mask = mov;
+      ::std::array<bool, 5> f;
+      mask.AsVector(f);
+
+      for (auto& b : f) {
+         if (b)
+            return -1;
+      }
    }
 
    {
@@ -43,6 +55,16 @@ int main() {
       auto mov = simde_mm_movemask_epi8(simde_mm_packs_epi16(res, simde_mm_setzero_si128()));
       if (mov != 224)
          return -1;
+
+      Bitmask<5> mask;
+      mask = mov;
+      ::std::array<bool, 5> f;
+      mask.AsVector(f);
+
+      for (auto& b : f) {
+         if (b)
+            return -1;
+      }
    }
 
    return 0;

@@ -14,6 +14,7 @@ FetchContent_MakeAvailable(SIMDe)
 
 # Build and install SIMD library                                            
 add_executable(bug Main.cpp)
+target_compile_features(bug PRIVATE cxx_std_23)
 
 if(MSVC)
 	# Some SVML functions seem to be broken on x86 MSVC builds				
