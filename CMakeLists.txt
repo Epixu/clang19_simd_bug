@@ -22,3 +22,6 @@ if(MSVC)
 endif()
 
 target_include_directories(bug PUBLIC "${CMAKE_SOURCE_DIR}/SIMDe-src")
+
+enable_testing()
+add_test(NAME bug COMMAND bug)
